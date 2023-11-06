@@ -16,11 +16,11 @@ class Hand extends Collection {
 
 export class Player {
     constructor(
-        private tokens: number = 0,
+        public tokens: number = 0,
         private hand: Hand = new Hand(),
     ) {}
 
-    payTokenTo(n: number = 1, card: Card): number {
+    payTokenTo(card: Card, n: number = 1): number {
         if (this.tokens < n) return 0;
         this.tokens -= n;
         card.addToken(1)

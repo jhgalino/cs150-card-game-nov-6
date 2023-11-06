@@ -1,10 +1,9 @@
 import { xorRNG } from "./random";
 
 export class Card {
-    private tokens: number = 0;
-
     constructor(
         public value: number,
+        public tokens: number = 0,
     ) {}  
 
     addToken(n: number = 1) {

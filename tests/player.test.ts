@@ -6,5 +6,9 @@ test("Player successfully places a token on card", () => {
     const testPlayer = new Player();
     const testCard = new Card(3);
 
-    testPlayer
+    testPlayer.payTokenTo(testCard);
+})
+
+test("Tokenless player tries to place token on card", () => {
+    const
 })

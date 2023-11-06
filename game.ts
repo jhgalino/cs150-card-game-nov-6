@@ -8,7 +8,6 @@ export enum GameState {
 }
 
 export class Game {
-    
     constructor(
         min: number = 3, 
         max: number = 35, 
