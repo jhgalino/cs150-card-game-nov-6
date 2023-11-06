@@ -3,6 +3,11 @@ class Card {
         private value: number,
         private tokens: number = 0,
     ) {}  
+
+    addToken(n: number = 1) {
+        this.tokens += n;
+        return n;
+    }
 }
 
 class Collection {
