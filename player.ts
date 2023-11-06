@@ -1,4 +1,14 @@
-import { Card, Hand } from './card.ts'
+import { Card, Collection } from './card.ts'
+
+class Hand extends Collection {
+    totalValue() {
+        return this.cards.reduce((score, card) => score += card.value, 0)    
+    }
+
+    add(card: Card) {
+        this.cards.push()
+    }
+}
 
 export class Player {
     constructor(

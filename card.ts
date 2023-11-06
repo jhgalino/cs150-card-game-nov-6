@@ -1,7 +1,7 @@
 import { xorRNG } from "./random";
 
 export class Card {
-    private tokens: number = 0
+    private tokens: number = 0;
 
     constructor(
         private value: number,
@@ -10,6 +10,10 @@ export class Card {
     addToken(n: number = 1) {
         this.tokens += n;
         return n;
+    }
+
+    get getValue() {
+        return this.value;
     }
 }
 
