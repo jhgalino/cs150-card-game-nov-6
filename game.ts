@@ -2,7 +2,7 @@ import { Card, Deck } from './card.ts';
 import { Player } from './player.ts';
 import { xorRNG } from './random.ts';
 
-enum GameState {
+export enum GameState {
     RUNNING = "run",
     END = "end",
 }
@@ -14,10 +14,11 @@ export class Game {
         private turn: number = 0,
         private currentPlayer: number = 0, // Index of the players array
         private currentCard: Card | null = null, // No current card at start
-        private state: GameState = GameState.RUNNING,
+        public state: GameState = GameState.RUNNING,
     ) {}
 
-    nextRound() {
+    private nextRound() {
+        this.checkEnd();
         // Update state variables
         this.turn++;
         const player = this.players[this.currentPlayer];
@@ -32,16 +33,11 @@ export class Game {
         }
     }
 
-    nextCurrentPlayer() {
+    private nextCurrentPlayer() {
         this.currentPlayer = (this.currentPlayer + 1) % this.players.length
     }
 
-    simulate() {
-        // Game loop
-        while 
-        // Check for game-ending conditions
-        if (this.deck.length === 0) this.endGame();
-
-        
+    private checkEnd() {
+        if (this.deck.length === 0) this.state = GameState.END;
     }
 }
