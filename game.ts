@@ -17,7 +17,7 @@ export class Game {
         public state: GameState = GameState.RUNNING,
     ) {}
 
-    private nextRound() {
+    public nextRound() {
         this.checkEnd();
         // Update state variables
         this.turn++;
@@ -37,7 +37,7 @@ export class Game {
         this.currentPlayer = (this.currentPlayer + 1) % this.players.length
     }
 
-    private checkEnd() {
+    public checkEnd() {
         if (this.deck.length === 0) this.state = GameState.END;
     }
 }
