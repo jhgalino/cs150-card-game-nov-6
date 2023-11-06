@@ -25,7 +25,7 @@ export class Game {
         if (numPlayers < 2) {
             throw new Error("Minimum of 2 players");
         }
-        
+
         for (let i = 0; i < numPlayers; i++) {
             players.push(new Player(startingTokens))
         }
@@ -58,5 +58,16 @@ export class Game {
 
     public checkEnd() {
         if (this.deck.length === 0) this.state = GameState.END;
+    }
+
+    public determineWinners() {
+        const scores: number[] = this.players.map((player) => player.calculateScore());
+        const max: number = scores.reduce((curr, next) => curr > next ? curr : next);
+        const winners: number[] = [];
+        for (const [i, score] of scores.entries()) {
+            if (score === max) winners.push(i);
+        } 
+
+        return winners;
     }
 }
