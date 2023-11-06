@@ -20,7 +20,11 @@ export class Hand extends Collection {
     }
 
     add(card: Card) {
-        this.cards.push();
+        this.cards.push(card);
+    }
+
+    toString() {
+        return this.cards.join(", ");
     }
 
     sort() {
