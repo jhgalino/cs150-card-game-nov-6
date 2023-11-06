@@ -6,11 +6,48 @@ class Hand extends Collection {
     }
 
     totalValue() {
-        return this.cards.reduce((score, card) => score += card.value, 0)    
+        if (this.getContiguousValues().length == 0) {
+            return this.cards.reduce((score, card) => score += card.getValue, 0);
+        } else {
+            let totalScore = 0;
+            for (let i = 0; i < this.cards.length; i++) {
+                if (!this.getContiguousValues().some(r => i > r.start && i <= r.end)) {
+                    totalScore += i;
+                }
+            }
+            return totalScore;
+        }
     }
 
     add(card: Card) {
-        this.cards.push()
+        this.cards.push();
+    }
+
+    sort() {
+        this.cards.sort((a, b) => a.getValue - b.getValue);
+    }
+
+    private getContiguousValues() {
+        const contiguousValues: {start: number, end: number}[] = [];
+        for (let i = 0; i < this.cards.length; i++) {
+            let start = 0, end = 0, inContiguousZone = false;
+            // if the next card is 1 more than the current card, set `start`
+            // to the index of the current card
+            if (this.cards[i+1].getValue - this.cards[i].getValue == 1) {
+                start = i;
+                inContiguousZone = true;
+            } else {
+                if (inContiguousZone) {
+                    inContiguousZone = false;
+                    end = i;
+                    contiguousValues.push({
+                        start,
+                        end,
+                    });
+                }
+            }
+        }
+        return contiguousValues;
     }
 }
 
@@ -33,6 +70,5 @@ export class Player {
 
     calculateScore(): number {
         return this.hand.totalValue() - this.tokens;
-        
     }
 }
