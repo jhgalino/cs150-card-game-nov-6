@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { Player } from '../player';
+import { Player, Hand } from '../player';
 import { Card, Deck } from '../card';
 import { Game } from '../game';
 
@@ -25,10 +25,29 @@ test("Tokenless player tries to place token on card", () => {
 
 test("Player takes two cards in succession", () => {
     const game = new Game();
+
+    game.nextRound("take");
+    game.nextRound("take");
+
+    const testHand = new Hand();
+    testHand.add(new Card(8));
+    testHand.add(new Card(27));
+
+    expect(game.players[0].hand).toStrictEqual(testHand);
+    expect(game.players[1].hand).toStrictEqual(new Hand());
 });
 
-test("Deck is created successfully", () => {
-    const testDeck = new Deck(3, 35);
+test("Player draws the last card of the deck", () => {
+    const game = new Game(3, 5, 1); // Only 2 cards
 
-    expect(testDeck.draw()).toBe(new Card(3));
+    game.nextRound("take");
+    game.nextRound("take");
+
+    const testHand = new Hand();
+    testHand.add(new Card(5));
+    testHand.add(new Card(4));
+
+    expect(game.players[0].hand).toStrictEqual(testHand);
+    expect(game.players[1].hand).toStrictEqual(new Hand());
+    expect(game.state).toBe("end");
 })

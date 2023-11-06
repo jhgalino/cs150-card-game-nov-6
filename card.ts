@@ -32,9 +32,10 @@ export class Deck extends Collection {
 
     shuffle() {
         for (let i = this.cards.length - 1; i > 0; i--) {
-            const j = Math.floor(xorRNG.random() * (i + 1));
+            const j = Math.floor(Math.abs(xorRNG.random()) * (i + 1));
+            
             [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
-          }
+        }
     }
 
     draw() {

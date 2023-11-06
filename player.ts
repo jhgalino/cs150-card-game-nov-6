@@ -1,6 +1,6 @@
 import { Card, Collection } from './card'
 
-class Hand extends Collection {
+export class Hand extends Collection {
     constructor() {
         super();
     }
@@ -10,14 +10,18 @@ class Hand extends Collection {
     }
 
     add(card: Card) {
-        this.cards.push()
+        this.cards.push(card)
+    }
+
+    toString(): string {
+        return this.cards.join(", ");
     }
 }
 
 export class Player {
     constructor(
         public tokens: number = 0,
-        private hand: Hand = new Hand(),
+        public hand: Hand = new Hand(),
     ) {}
 
     payTokenTo(card: Card, n: number = 1): number {
@@ -33,6 +37,5 @@ export class Player {
 
     calculateScore(): number {
         return this.hand.totalValue() - this.tokens;
-        
     }
 }
