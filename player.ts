@@ -25,4 +25,8 @@ export class Player {
     addToHand(card: Card) {
         this.hand.add(card);
     }
+
+    calculateScore(): number {
+        return this.hand.totalValue() - this.tokens;
+    }
 }
