@@ -10,7 +10,7 @@ export enum GameState {
 export class Game {
     constructor(
         private deck: Deck,
-        private players: Player[],
+        public players: Player[],
         private turn: number = 0,
         private currentPlayer: number = 0, // Index of the players array
         private currentCard: Card | null = null, // No current card at start
