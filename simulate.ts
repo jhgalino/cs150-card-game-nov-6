@@ -1,5 +1,5 @@
-import { Card, Deck } from './card.ts';
-import { Game, GameState } from './game.ts';
+import { Card, Deck } from './card';
+import { Game, GameState } from './game';
 
 function simulate(game: Game) {
     // Game loop

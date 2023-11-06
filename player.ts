@@ -1,4 +1,4 @@
-import { Card, Collection } from './card.ts'
+import { Card, Collection } from './card'
 
 class Hand extends Collection {
     constructor() {

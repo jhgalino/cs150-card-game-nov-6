@@ -1,6 +1,6 @@
-import { Card, Deck } from './card.ts';
-import { Player } from './player.ts';
-import { xorRNG } from './random.ts';
+import { Card, Deck } from './card';
+import { Player } from './player';
+import { xorRNG } from './random';
 
 export enum GameState {
     RUNNING = "run",
