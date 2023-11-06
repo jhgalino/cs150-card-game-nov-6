@@ -4,7 +4,7 @@ export class Card {
     private tokens: number = 0;
 
     constructor(
-        private value: number,
+        public value: number,
     ) {}  
 
     addToken(n: number = 1) {
