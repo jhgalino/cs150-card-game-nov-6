@@ -1,7 +1,8 @@
 class Card {
+    private tokens: number = 0
+
     constructor(
         private value: number,
-        private tokens: number = 0,
     ) {}  
 
     addToken(n: number = 1) {
@@ -17,8 +18,11 @@ class Collection {
 }
 
 class Deck extends Collection {
-    constructor() {
+    constructor(min: number, max: number) {
         super();
+        for (let i = min; i < max; i++) {
+            this.cards.push(new Card(i))
+        }
     }
 
     shuffle() {
@@ -29,14 +33,14 @@ class Deck extends Collection {
     }
 
     draw() {
-        return this.cards.pop();
+        const card = this.cards.pop();
+        if (card == undefined) {
+            throw new Error("Deck is empty!");
+        }
+        return card;
     }
 
     get length() {
         return this.cards.length;
-    }
-
-    static Generate(min, max: number) {
-        
     }
 }
