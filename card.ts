@@ -1,4 +1,4 @@
-class Card {
+export class Card {
     private tokens: number = 0
 
     constructor(
@@ -11,13 +11,13 @@ class Card {
     }
 }
 
-class Collection {
+export class Collection {
     constructor(
         protected cards: Card[] = []
     ) {}
 }
 
-class Deck extends Collection {
+export class Deck extends Collection {
     constructor(min: number, max: number) {
         super();
         for (let i = min; i < max; i++) {
