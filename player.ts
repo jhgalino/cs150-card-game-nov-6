@@ -1,13 +1,10 @@
-import { Card, Deck } from 'card.ts'
+import { Card, Collection } from './card.ts'
 
-class Player {
+export class Player {
     constructor(
         private tokens: number,
-        private deck: Deck,
+        private hand: Collection,
     ) {}
 
-    payToken(card: Card) {
-        this.tokens -= 1;
-        card.addToken();
-    }
+    
 }
