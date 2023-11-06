@@ -13,7 +13,7 @@ class Hand extends Collection {
 export class Player {
     constructor(
         private tokens: number = 0,
-        private hand: Hand,
+        private hand: Hand = new Hand(),
     ) {}
 
     payToken(n: number = 1): number {

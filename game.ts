@@ -8,14 +8,33 @@ export enum GameState {
 }
 
 export class Game {
+    
     constructor(
-        private deck: Deck,
-        public players: Player[],
+        min: number = 3, 
+        max: number = 35, 
+        removedCards: number = 9, 
+        startingTokens: number = 11, 
+        numPlayers: number = 2,
+        private deck: Deck = new Deck(min, max),
+        public players: Player[] = [],
         private turn: number = 0,
         private currentPlayer: number = 0, // Index of the players array
         private currentCard: Card | null = null, // No current card at start
         public state: GameState = GameState.RUNNING,
-    ) {}
+    ) {
+        if (numPlayers < 2) {
+            throw new Error("Minimum of 2 players");
+        }
+        
+        for (let i = 0; i < numPlayers; i++) {
+            players.push(new Player(startingTokens))
+        }
+
+        deck.shuffle();
+        for (let i = 0; i < removedCards; i++) {
+            deck.draw();
+        }
+    }
 
     public nextRound() {
         this.checkEnd();
