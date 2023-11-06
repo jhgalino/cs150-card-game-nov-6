@@ -1,6 +1,10 @@
 import { Card, Collection } from './card.ts'
 
 class Hand extends Collection {
+    constructor() {
+        super();
+    }
+
     totalValue() {
         return this.cards.reduce((score, card) => score += card.value, 0)    
     }
@@ -16,9 +20,10 @@ export class Player {
         private hand: Hand = new Hand(),
     ) {}
 
-    payToken(n: number = 1): number {
+    payTokenTo(n: number = 1, card: Card): number {
         if (this.tokens < n) return 0;
         this.tokens -= n;
+        card.addToken(1)
         return n;
     }
 
@@ -28,5 +33,6 @@ export class Player {
 
     calculateScore(): number {
         return this.hand.totalValue() - this.tokens;
+        
     }
 }
