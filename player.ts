@@ -1,10 +1,10 @@
-import { Card, Collection } from './card.ts'
+import { Card, Hand } from './card.ts'
 
 export class Player {
     constructor(
         private tokens: number,
-        private hand: Collection,
+        private hand: Hand,
     ) {}
 
-    
+
 }
