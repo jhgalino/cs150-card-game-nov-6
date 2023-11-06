@@ -32,3 +32,5 @@ class XORShift {
       return this.next() / 0x100000000; // divide by 2^32 to get a value between 0 and 1
     }
 }
+
+export const xorRNG = new XORShift(42);
