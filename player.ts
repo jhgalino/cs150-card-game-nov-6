@@ -6,5 +6,11 @@ export class Player {
         private hand: Hand,
     ) {}
 
+    payToken(n: number = 1) {
+        this.tokens -= n;
+    }
 
+    addToHand(card: Card) {
+
+    }
 }
