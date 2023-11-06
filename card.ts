@@ -1,9 +1,6 @@
 class Card {
-    value: number;
-    tokens: number;
-
-    constructor(value: number) {
-        this.value = value;
-        this.tokens = 0;
-    }   
+    constructor(
+        private value: number,
+        private tokens: number = 0,
+    ) {}  
 }
