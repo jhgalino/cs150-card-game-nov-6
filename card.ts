@@ -25,7 +25,7 @@ export class Collection {
 export class Deck extends Collection {
     constructor(min: number, max: number) {
         super();
-        for (let i = min; i < max; i++) {
+        for (let i = min; i <= max; i++) {
             this.cards.push(new Card(i))
         }
     }
