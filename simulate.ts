@@ -9,7 +9,7 @@ function simulate(game: Game) {
         
         console.log(`TURN ${game.turn}`);
         console.log(`CURRENT PLAYER: Player ${game.currentPlayer + 1}`);
-        console.log(`CURRENT CARD: ${game.currentCard!.value} with ${game.currentCard!.tokens} tokens`)
+        console.log(`CURRENT CARD: ${game.currentCard!.getValue} with ${game.currentCard!.tokens} tokens`)
         
         for (let i = 0; i < game.players.length; i++) {
             console.log(`PLAYER ${i + 1}'s TOKENS: ${game.players[i].tokens}`);
