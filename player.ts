@@ -23,6 +23,6 @@ export class Player {
     }
 
     addToHand(card: Card) {
-
+        this.hand.add(card);
     }
 }
