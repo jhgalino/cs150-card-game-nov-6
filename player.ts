@@ -6,17 +6,20 @@ export class Hand extends Collection {
     }
 
     totalValue() {
+        let totalScore = 0;
         if (this.getContiguousValues().length == 0) {
-            return this.cards.reduce((score, card) => score += card.getValue, 0);
+            for (let card of this.cards) {
+                totalScore += card.getValue;
+            }
+            // return this.cards.reduce((acc, card) => acc + card.getValue, 0);
         } else {
-            let totalScore = 0;
             for (let i = 0; i < this.cards.length; i++) {
                 if (!this.getContiguousValues().some(r => i > r.start && i <= r.end)) {
                     totalScore += i;
                 }
             }
-            return totalScore;
         }
+        return totalScore;
     }
 
     add(card: Card) {
@@ -27,12 +30,13 @@ export class Hand extends Collection {
         return this.cards.join(", ");
     }
 
-    sort() {
+    private sort() {
         this.cards.sort((a, b) => a.getValue - b.getValue);
     }
 
-    private getContiguousValues() {
+    getContiguousValues() {
         const contiguousValues: {start: number, end: number}[] = [];
+        this.sort();
         for (let i = 0; i < this.cards.length; i++) {
             let start = 0, end = 0, inContiguousZone = false;
             // if the next card is 1 more than the current card, set `start`
@@ -40,6 +44,7 @@ export class Hand extends Collection {
             if (this.cards[i+1].getValue - this.cards[i].getValue == 1) {
                 start = i;
                 inContiguousZone = true;
+                console.log('start, end, inccontig', start, end, inContiguousZone);
             } else {
                 if (inContiguousZone) {
                     inContiguousZone = false;
@@ -49,6 +54,7 @@ export class Hand extends Collection {
                         end,
                     });
                 }
+                console.log('start, end, inccontig', start, end, inContiguousZone);
             }
         }
         return contiguousValues;

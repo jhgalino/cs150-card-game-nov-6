@@ -40,14 +40,13 @@ test("Player takes two cards in succession", () => {
 test("Player draws the last card of the deck", () => {
     const game = new Game(3, 5, 1); // Only 2 cards
 
-    game.nextRound("take");
-    game.nextRound("take");
+    expect(testDeck.draw()).toBe(new Card(35));
+})
 
+test("Scoring of unsorted hand with one sequence of at least length 5 without unrelated cards with nonzero tokens", () => {
     const testHand = new Hand();
-    testHand.add(new Card(5));
-    testHand.add(new Card(4));
+    testHand.add(new Card(7));
+    testHand.add(new Card(8));
 
-    expect(game.players[0].hand).toStrictEqual(testHand);
-    expect(game.players[1].hand).toStrictEqual(new Hand());
-    expect(game.state).toBe("end");
+    expect(testHand.getContiguousValues.length).toBe(7);
 })
